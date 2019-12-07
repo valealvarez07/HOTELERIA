@@ -1,5 +1,6 @@
 const React = require('react');
 const Habitacion = require('../habitacion');
+const Login = require('../login');
 
 const {Link} = require('react-router-dom');
 
@@ -9,7 +10,11 @@ class Hoteleria extends React.Component {
         const {habitaciones} = this.props;
 
         return (
+
           <div>
+
+            <Login  />
+
             <Link to = {`/hoteleria/usuarios`}>usuarios</Link>
 
             <ul className="hoteleria">

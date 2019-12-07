@@ -31,6 +31,22 @@ router.get('/:id', (req, res, next) => {
     });
 });
 
+router.post('/login', (req, res, next) => {
+
+    Usuario.obtenerUsuarioPorId(req.body.usuario)
+    .then(usuario => {
+        if(usuario.contraseña === req.body.password){
+            req.session.sesionUsuario = req.body.usuario;
+            res.send("iniciaste sesion");
+        } else{
+            res.send("error al iniciar sesion");
+        }
+    })
+    
+    .catch(err => {
+        next(err);
+    });
+});
 
 router.post('/', (req, res, next) => {
 

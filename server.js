@@ -14,6 +14,15 @@ require('@babel/register')({
   
   const app = express();
   
+  const session = require('express-session');
+
+  app.use(session({
+      secret: 'my secret',
+      cookie: {maxAge: 43200000}, //12hs
+      resave: false,
+      saveUninitialized: true,
+  }));
+
   // Configuraciones de express
   app.set('view engine', 'ejs');
   app.set('views', __dirname + '/app/views');

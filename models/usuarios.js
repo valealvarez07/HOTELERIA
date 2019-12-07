@@ -60,13 +60,13 @@ class Usuario {
 
     static obtenerUsuarioPorId (id) {
         return new Promise ((resolve, reject) => {
-            db.query(SELECCIONAR_USUARIO, [id], (err, res) => {
+            db.query(SELECCIONAR_USUARIO_numeroDocumento, [id], (err, res) => {
                 if (err || res[0] === undefined){
                     reject(err);
                 } else if (res.length === 0) {
                     reject(new Error('No hay resultados'));
                 } else {
-                    const {id, tipoDocumento, numeroDocumento, nombre, sexo, edad, telefono, direccion, email, administrador, contraseña} = results[0];
+                    const {id, tipoDocumento, numeroDocumento, nombre, sexo, edad, telefono, direccion, email, administrador, contraseña} = res[0];
                     resolve (new Usuario(id, tipoDocumento, numeroDocumento, nombre, sexo, edad, telefono, direccion, email, administrador, contraseña))
                 }
             }); 
