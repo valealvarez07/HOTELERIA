@@ -1,0 +1,75 @@
+const router = require('express').Router();
+const React = require('react');
+const { renderToString } = require('react-dom/server');
+const Habitacion = require('../../../models/habitaciones');
+const Usuarios = require('../../../models/usuarios');
+const Reservas = require('../../../models/reservas');
+const View = require('./view');
+
+const {StaticRouter} = require('react-router-dom');
+
+router.get('/', (req, res, next) => {
+
+  const promesaHabitaciones = Habitacion.obtenerTodasHabitaciones();
+  const promesaUsuarios = Usuarios.obtenerTodosUsuarios();
+  const promesaReservas = Reservas.obtenerTodasReservas();
+
+  Promise.all([promesaHabitaciones, promesaUsuarios, promesaReservas])
+    .then(([habitaciones, usuarios, reservas]) => {
+      const initialState = {
+        habitaciones,
+        usuarios,
+        reservas,
+      };
+
+      const context = {};
+
+      const content = renderToString(
+        <StaticRouter location={req.url} context={context}>
+          <View initialState={initialState}/>
+        </StaticRouter>
+      );
+  
+      res.render('template', {
+        pageName: 'hoteleria',
+        pageTitle: 'HOTELERIA',
+        initialState,
+        content
+      });
+    }).catch(err => next(err));
+  });
+
+
+    
+  //   Habitacion.obtenerTodasHabitaciones()
+  //   .then (habitaciones => {
+  //       //res.render ('habitaciones', {
+  //       //    habitaciones: habitaciones,
+  //       //})
+  //       const initialState = {
+  //           habitaciones,
+  //       };
+
+  //       const context = {};
+
+  //       const content = renderToString(
+  //         <StaticRouter location={req.url} context={context}>
+  //           <View initialState={initialState}/>
+  //         </StaticRouter>
+  //       );
+
+  //       res.render('template', {
+  //         pageName: 'hoteleria',
+  //         pageTitle: 'HOTELERIA',
+  //         initialState,
+  //         content
+  //       });
+  //   })
+
+  //   .catch(err => {
+  //     next(err);
+  //   });
+  // });
+  
+
+module.exports = router;

@@ -1,0 +1,43 @@
+<form method="POST" action="/register" enctype="application/x-www-form-urlencoded">
+    <label>nombre de usuario: numeroDocumento</label>
+    <input type="text" name="usuario" id="usuario">
+    
+    <label>contraseña</label>
+    <input type="text" name="password" id="password">
+
+    <!-- <br/>
+    <label>id</label>
+    <input name="id" type="text"></input> -->
+    <br/>
+    <label>tipoDocumento</label>
+    <input name="tipoDocumento" type="text"></input>
+    <br/>
+    <label>nombre</label>
+    <input name="nombre" type="text"></input>
+    <br/>
+    <label>sexo</label>
+    <select name="sexo">
+        <option value="Hombre">Hombre</option>
+        <option value="Mujer">Mujer</option>
+    </select>
+    <br/>
+    <label>edad</label>
+    <input name="edad" type="text"></input>
+    <br/>
+    <label>telefono</label>
+    <input name="telefono" type="text"></input>
+    <br/>
+    <label>direccion</label>
+    <input name="direccion" type="text"></input>
+    <br/>
+    <label>email</label>
+    <input name="email" type="text"></input>
+    <br/>
+    <label>administrador</label>
+    <input type="checkbox" name="administrador" value="1">Si</input>
+    <input type="checkbox" name="administrador" value="0">No</input>
+
+    <br/>
+
+    <button type="submit">CREAR USUARIO</button>
+</form>
