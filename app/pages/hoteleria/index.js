@@ -1,12 +1,11 @@
 const router = require('express').Router();
+const {StaticRouter} = require('react-router-dom');
 const React = require('react');
 const { renderToString } = require('react-dom/server');
 const Habitacion = require('../../../models/habitaciones');
 const Usuarios = require('../../../models/usuarios');
 const Reservas = require('../../../models/reservas');
 const View = require('./view');
-
-const {StaticRouter} = require('react-router-dom');
 
 router.get('/', (req, res, next) => {
 
@@ -20,6 +19,7 @@ router.get('/', (req, res, next) => {
         habitaciones,
         usuarios,
         reservas,
+        sesionUsuario: req.session.sesionUsuario ? req.session.sesionUsuario : '',
       };
 
       const context = {};

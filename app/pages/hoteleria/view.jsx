@@ -9,26 +9,43 @@ const CrearReserva = require('../../components/crear-reserva');
 const ModificarHabitacion = require('../../components/modificar-habitacion');
 
 const Usuarios = require('../../components/usuarios');
+const Reservas = require('../../components/reservas');
+const Login = require('../../components/login');
+const Registro = require('../../components/register');
 
 class HoteleriaPage extends React.Component {
 
     render() {
-        const { habitaciones } = this.props.initialState;
-        const { usuarios } = this.props.initialState;
+        const { habitaciones, usuarios, reservas, sesionUsuario } = this.props.initialState;
 
         return (
 
             <React.Fragment>
                 <Route
                     exact
+                    path = "/hoteleria/login"
+                    render = {(props) => <Login {...props} />}
+                />
+                <Route
+                    exact
+                    path = "/hoteleria/register"
+                    render = {(props) => <Registro {...props} />}
+                />
+                <Route
+                    exact
                     path = "/hoteleria"
-                    render = {(props) => <Hoteleria {...props} habitaciones={habitaciones}/>}
+                    render = {(props) => <Hoteleria {...props} sesionUsuario={sesionUsuario} habitaciones={habitaciones}/>}
                    // render = {(props) => <Habitacion {...props} habitaciones={habitaciones} />}
                 />
                 <Route
                     exact
                     path = "/hoteleria/usuarios"
                     render = {(props) => <Usuarios {...props} usuarios={usuarios} />}
+                />
+                 <Route
+                    exact
+                    path = "/hoteleria/reservas"
+                    render = {(props) => <Reservas {...props} reservas={reservas} />}
                 />
                 <Route
                     exact

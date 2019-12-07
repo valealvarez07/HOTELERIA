@@ -1,7 +1,7 @@
 
 const db = require('../services/db-connection');
 
-const GUARDAR_RESERVA = 'INSERT INTO reservas VALUES(?,?,?,?,?,?,?)'; 
+const GUARDAR_RESERVA = 'INSERT INTO reservas VALUES(0,?,?,?,?,?,?)'; 
 const SELECCIONAR_TODAS_RESERVAS = 'SELECT * FROM reservas';
 //const SELECCIONAR_RESERVA = 'SELECT * FROM reservas WHERE numeroReserva = ?';
 const ELIMINAR_RESERVA = 'DELETE FROM reservas WHERE numeroReserva = ?';
@@ -20,7 +20,7 @@ class Reserva {
     save() {
         const {numeroReserva, idUsuario, numeroHabitacion, fechaLlegada, fechaSalida, modoPago, cantidadHuespedes} = this;
         return new Promise ((resolve, reject) => {
-            db.query(GUARDAR_RESERVA, [numeroReserva, idUsuario, numeroHabitacion, fechaLlegada, fechaSalida, modoPago, cantidadHuespedes], (err, res) => {
+            db.query(GUARDAR_RESERVA, [idUsuario, numeroHabitacion, fechaLlegada, fechaSalida, modoPago, cantidadHuespedes], (err, res) => {
                 if (err) {
                     //if (err.errno === 1062) {
                     //    reject ({

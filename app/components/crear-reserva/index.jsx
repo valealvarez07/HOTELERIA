@@ -48,7 +48,7 @@ class CrearReserva extends React.Component {
         return (
 
             <React.Fragment>
-                <form>
+                <form method="POST" action="/api/reservas" enctype="application/x-www-form-urlencoded">
                     <label>idUsuario</label>
                     <input onChange={this.guardarIdUsuario} name="" type="text"></input>
                     <br/>
@@ -77,7 +77,7 @@ class CrearReserva extends React.Component {
         );
     }
 
-    crearHabitacion (e){
+    crearReserva (e){
         //e.preventDefault();
         fetch ('/api/reservas', {
             headers: {"Content-Type": "application/json; charset=utf-8"},

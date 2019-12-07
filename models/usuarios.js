@@ -1,7 +1,7 @@
 
 const db = require('../services/db-connection');
 
-const GUARDAR_USUARIO = 'INSERT INTO usuarios VALUES(?,?,?,?,?,?,?,?,?,?,?)'; 
+const GUARDAR_USUARIO = 'INSERT INTO usuarios VALUES(0,?,?,?,?,?,?,?,?,?,?)'; 
 const SELECCIONAR_TODOS_USUARIOS = 'SELECT * FROM usuarios';
 const SELECCIONAR_USUARIO_numeroDocumento = 'SELECT * FROM usuarios WHERE numeroDocumento = ?';
 //const MODIFICAR_HABITACION = 'UPDATE habitaciones SET tipoDocumento = ?, numeroDocumento = ?, nombre = ?, sexo = ?, edad = ?, telefono = ?, direccion = ?, email = ?, administrador = ?, contraseña = ? WHERE id = ?';
@@ -25,7 +25,7 @@ class Usuario {
     save() {
         const {id, tipoDocumento, numeroDocumento, nombre, sexo, edad, telefono, direccion, email, administrador, contraseña} = this;
         return new Promise((resolve, reject) => {
-            db.query(GUARDAR_USUARIO, [id, tipoDocumento, numeroDocumento, nombre, sexo, edad, telefono, direccion, email, administrador, contraseña], (err, res) => {
+            db.query(GUARDAR_USUARIO, [tipoDocumento, numeroDocumento, nombre, sexo, edad, telefono, direccion, email, administrador, contraseña], (err, res) => {
                 if (err) {
                     if (err.errno === 1062) {
                         reject ({

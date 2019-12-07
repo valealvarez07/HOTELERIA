@@ -1,36 +1,45 @@
 const React = require('react');
 const Habitacion = require('../habitacion');
 const Login = require('../login');
+const Registro = require('../register');
+const Reservas = require('../crear-reserva');
 
-const {Link} = require('react-router-dom');
+const { Link } = require('react-router-dom');
 
 class Hoteleria extends React.Component {
 
-    render() {
-        const {habitaciones} = this.props;
+  render() {
+    const { habitaciones } = this.props;
 
-        return (
+    return (
+      <div>
+        <Link to={`/hoteleria/login`}>LOGIN</Link>
+        <br />
+        <Link to={`/hoteleria/register`}>REGISTRARSE</Link>
+        <br />
+        <Link to={`/hoteleria/usuarios`}>usuarios</Link>
+        <br />
+        <ul className="hoteleria">
+          {
+            habitaciones.map(habitacion => (
+              <Habitacion key={habitacion.numeroHabitacion} numeroHabitacion={habitacion.numeroHabitacion} valoracion={habitacion.valoracion} imagenes={habitacion.imagenes} descripcion={habitacion.descripcion} tipoHabitacion={habitacion.tipoHabitacion} precio={habitacion.precio} comodidades={habitacion.comodidades} servicios={habitacion.servicios} tamañoMetros2={habitacion.tamañoMetros2} disponibilidad={habitacion.disponibilidad} />
+            ))
+          }
+        </ul>
 
+        <br />
+        {this.props.sesionUsuario ?
           <div>
-
-            <Login  />
-
-            <Link to = {`/hoteleria/usuarios`}>usuarios</Link>
-
-            <ul className="hoteleria">
-              {
-                habitaciones.map(habitacion => (
-                  <Habitacion key={habitacion.numeroHabitacion} numeroHabitacion={habitacion.numeroHabitacion} valoracion={habitacion.valoracion} imagenes={habitacion.imagenes} descripcion={habitacion.descripcion} tipoHabitacion={habitacion.tipoHabitacion} precio={habitacion.precio} comodidades={habitacion.comodidades} servicios={habitacion.servicios} tamañoMetros2={habitacion.tamañoMetros2} disponibilidad={habitacion.disponibilidad} />
-                ))
-              }
-            </ul>
-            <br/>
-            <Link to = {'/hoteleria/crear-habitacion'}>ir a crear una habitacion</Link>
-            <br/>
-            <Link to = {'/hoteleria/crear-usuario'}>ir a crear un usuario</Link>
+            <Link to={`/hoteleria/reservas`}>ir a ver reservas</Link>
+            <br />
+            <Link to={'/hoteleria/crear-habitacion'}>ir a crear una habitacion</Link>
+            <br />
           </div>
-        );
-    }
+          : null}
+        <Link to={'/hoteleria/crear-usuario'}>ir a crear un usuario</Link>
+      </div>
+    );
+  }
 };
 
 
