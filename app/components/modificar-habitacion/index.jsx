@@ -57,7 +57,13 @@ class ModificarHabitacion extends React.Component {
             return (
                 <div>Error</div>
             )
-        }        
+        }       
+        
+        if (this.state.redireccionar) {
+            return (
+                window.location.href = "/hoteleria"
+            )
+        }
 
         return (
 
@@ -66,15 +72,14 @@ class ModificarHabitacion extends React.Component {
                 {/* <h3>numeroHabitacion: {this.props.numeroHabitacion}, tipoHabitacion: {this.props.tipoHabitacion}</h3>
                 <p>valoracion: {this.props.valoracion}</p> */}
 
-                {this.props.sesionUsuario ?
-                    //<Link to = {`/hoteleria/habitacion/${this.props.numeroHabitacion}`}>modificar habitacion</Link>
                     <div>
                         <form>
-                            <label>numeroHabitacion</label>
-                            <input onChange={this.guardarNumeroHabitacion} type="text"></input>
+                        
+                            <label>numeroHabitacion </label>
+                            <input onChange={this.guardarNumeroHabitacion} placeholder={this.state.habitacion.numeroHabitacion} type="text"></input>
                             <br/>
-                            <label>valoracion</label>
-                            <select onChange={this.guardarValoracion} ref="valoracionRef">
+                            <label>valoracion </label>
+                            <select onChange={this.guardarValoracion} ref="valoracionRef" value={this.state.habitacion.valoracion}>
                                 <option value="1 Estrella">1 Estrella</option>
                                 <option value="2 Estrellas">2 Estrellas</option>
                                 <option value="3 Estrellas">3 Estrellas</option>
@@ -82,45 +87,44 @@ class ModificarHabitacion extends React.Component {
                                 <option value="5 Estrellas">5 Estrellas</option>
                             </select>
                             <br/>
-                            <label>imagenes</label>
-                            <input onChange={this.guardarImagenes} type="text"></input>
+                            <label>imagenes </label>
+                            <input onChange={this.guardarImagenes} placeholder={this.state.habitacion.imagenes} type="text"></input>
                             <br/>
-                            <label>descripcion</label>
-                            <input onChange={this.guardarDescripcion} type="text"></input>
+                            <label>descripcion </label>
+                            <input onChange={this.guardarDescripcion} placeholder={this.state.habitacion.descripcion} type="text"></input>
                             <br/>
-                            <label>tipoHabitacion</label>
-                            <select onChange={this.guardarTipoHabitacion} ref="tipoHabitacionRef">
+                            <label>tipoHabitacion </label>
+                            <select onChange={this.guardarTipoHabitacion} ref="tipoHabitacionRef" value={this.state.habitacion.tipoHabitacion}>
                                 <option value="1 Persona">1 Persona</option>
                                 <option value="2 Personas">2 Personas</option>
                                 <option value="4 Personas">4 Personas</option>
                                 <option value="Matrimonial">Matrimonial</option>
                             </select>
                             <br/>
-                            <label>precio</label>
-                            <input onChange={this.guardarPrecio} type="text"></input>
+                            <label>precio </label>
+                            <input onChange={this.guardarPrecio} placeholder={this.state.habitacion.precio} type="text"></input>
                             <br/>
-                            <label>comodidades</label>
-                            <input onChange={this.guardarComodidades} type="text"></input>
+                            <label>comodidades </label>
+                            <input onChange={this.guardarComodidades} placeholder={this.state.habitacion.comodidades} type="text"></input>
                             <br/>
-                            <label>servicios</label>
-                            <input onChange={this.guardarServicios} type="text"></input>
+                            <label>servicios </label>
+                            <input onChange={this.guardarServicios} placeholder={this.state.habitacion.servicios} type="text"></input>
                             <br/>
-                            <label>tamañoMetros2</label>
-                            <input onChange={this.guardarTamañoMetros2} type="text"></input>
+                            <label>tamañoMetros2 </label>
+                            <input onChange={this.guardarTamañoMetros2} placeholder={this.state.habitacion.tamañoMetros2} type="text"></input>
                             <br/>
-                            <label>disponibilidad</label>
-                            <input onChange={this.guardarDisponibilidad} type="text"></input>
-                            <br/>
+                            <label>disponibilidad </label>
+                            <input onChange={this.guardarDisponibilidad} placeholder={this.state.habitacion.disponibilidad} type="text"></input>
+                            <br/><br/>
 
                             <button type="button" onClick={this.modificarHabitacion}>modificar habitacion</button>
                         </form>
                     
-                        <br/><br/>
+                        <br/>
 
                         <button onClick={this.eliminarHabitacion}>eliminar habitacion</button>
 
                     </div>
-                : null}
                 
             </React.Fragment>
         );
@@ -145,8 +149,9 @@ class ModificarHabitacion extends React.Component {
         })
 
         .then ((data) => {
-            window.location.href = "/hoteleria";
-            
+            this.setState ({ 
+                redireccionar: true,
+            });            
         })
 
         .catch(err => {

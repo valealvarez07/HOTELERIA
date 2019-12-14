@@ -6,6 +6,11 @@ const SELECCIONAR_TODAS_RESERVAS = 'SELECT * FROM reservas';
 //const SELECCIONAR_RESERVA = 'SELECT * FROM reservas WHERE numeroReserva = ?';
 const ELIMINAR_RESERVA = 'DELETE FROM reservas WHERE numeroReserva = ?';
 
+// const GUARDAR_RESERVAs = 'select * from reservas where "fechaLlegada" between to_date('01/01/2019','dd/mm/yyyy') and to_date('06/02/2019','dd/mm/yyyy')';
+const GUARDAR_RESERVAs = 'SELECT * FROM reservas WHERE fechaLlegada, fechaSalida BETWEEN to_date(?,"yyyy/mm/dd") AND to_date(?,"yyyy/mm/dd")';
+
+
+
 class Reserva {
     constructor (numeroReserva, idUsuario, numeroHabitacion, fechaLlegada, fechaSalida, modoPago, cantidadHuespedes) {
         this.numeroReserva = numeroReserva;
@@ -22,13 +27,15 @@ class Reserva {
         return new Promise ((resolve, reject) => {
             db.query(GUARDAR_RESERVA, [idUsuario, numeroHabitacion, fechaLlegada, fechaSalida, modoPago, cantidadHuespedes], (err, res) => {
                 if (err) {
-                    //if (err.errno === 1062) {
+                    // if (err.errno === 1062) {
                     //    reject ({
-                    //       error: "Este numero de habitacion ya existe"
+                    //       error: "Este numero de reserva ya existe"
                     //    });
-                    //} else {
+                    if (res.fechaLlegada){
+
+                    } else {
                         reject (err);
-                    //}
+                    }
                 } else{
                     resolve()
                 }

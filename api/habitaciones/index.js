@@ -1,4 +1,7 @@
 const router = require('express').Router(); 
+const multer = require('multer');
+const upload = multer({ dest: 'imagenes/'});
+
 const Habitacion = require('../../models/habitaciones');
 
 //Handlers para los endpoints de la API de habitaciones
@@ -31,11 +34,12 @@ router.get('/:numeroHabitacion', (req, res, next) => {
     });
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', upload.single('fotoHabitacion'), (req, res, next) => {
 
     const numeroHabitacion = req.body.numeroHabitacion;
     const valoracion = req.body.valoracion;
-    const imagenes = req.body.imagenes;
+    //const imagenes = req.body.imagenes;
+    const imagenes = req.file.imagenes;
     const descripcion = req.body.descripcion;
     const tipoHabitacion = req.body.tipoHabitacion;
     const precio = req.body.precio;

@@ -44,7 +44,7 @@ class CrearUsuario extends React.Component {
 
         if (this.state.redireccionar) {
             return (
-                <Redirect to="/hoteleria"/> 
+                window.location.href = "/hoteleria"
             )
         }
 

@@ -8,7 +8,7 @@ class Registro extends React.Component {
 
         return (
 
-            <form method="POST" action="/api/usuarios" enctype="application/x-www-form-urlencoded">
+            <form method="POST" action="/api/usuarios" encType="application/x-www-form-urlencoded">
                 <label>nombre de usuario: numeroDocumento</label>
                 <input type="text" name="numeroDocumento" id="usuario"></input>
 

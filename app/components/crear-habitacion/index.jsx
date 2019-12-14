@@ -43,7 +43,8 @@ class CrearHabitacion extends React.Component {
 
         if (this.state.redireccionar) {
             return (
-                <Redirect to="/hoteleria"/> 
+                window.location.href = "/hoteleria"
+                //<Redirect to="/hoteleria"/> 
             )
         }
         
@@ -51,7 +52,7 @@ class CrearHabitacion extends React.Component {
         return (
 
             <React.Fragment>
-                <form>
+                <form method="POST" action="/api/habitaciones" encType="multipart/form-data">
                     <label>numeroHabitacion</label>
                     <input onChange={this.guardarNumeroHabitacion} name="" type="text"></input>
                     <br/>
@@ -65,8 +66,8 @@ class CrearHabitacion extends React.Component {
                     </select>
                     <br/>
                     <label>imagenes</label>
-                    <input onChange={this.guardarImagenes} type="text"></input>
-                    {/* <input onChange={this.guardarImagenes} type="file"></input> */}
+                    {/* <input onChange={this.guardarImagenes} type="text"></input> */}
+                    <input onChange={this.guardarImagenes} type="file"></input>
                     <br/>
                     <label>descripcion</label>
                     <input onChange={this.guardarDescripcion} type="text"></input>

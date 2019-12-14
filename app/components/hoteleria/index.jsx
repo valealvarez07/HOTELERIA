@@ -1,10 +1,7 @@
 const React = require('react');
-const Habitacion = require('../habitacion');
-const Login = require('../login');
-const Registro = require('../register');
-const Reservas = require('../crear-reserva');
-
 const { Link } = require('react-router-dom');
+
+const Habitacion = require('../habitacion');
 
 class Hoteleria extends React.Component {
 

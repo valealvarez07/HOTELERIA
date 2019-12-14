@@ -17,6 +17,8 @@ class CrearReserva extends React.Component {
         this.crearReserva = this.crearReserva.bind(this);
 
         this.state = {
+            usuario: {},
+            habitacion: {},
             reserva: {},
             loading: false,
             error: null,
@@ -40,7 +42,7 @@ class CrearReserva extends React.Component {
 
         if (this.state.redireccionar) {
             return (
-                <Redirect to="/hoteleria"/> 
+                window.location.href = "/hoteleria"
             )
         }
         
@@ -48,9 +50,12 @@ class CrearReserva extends React.Component {
         return (
 
             <React.Fragment>
-                <form method="POST" action="/api/reservas" enctype="application/x-www-form-urlencoded">
-                    <label>idUsuario</label>
-                    <input onChange={this.guardarIdUsuario} name="" type="text"></input>
+                <form method="POST" action="/api/reservas" encType="application/x-www-form-urlencoded">
+
+                    {/* <p>numeroHabitacion: {this.state.habitacion.numeroHabitacion}</p> */}
+                    
+                    <label htmlFor='idUsuario'>idUsuario</label>
+                    <input onChange={this.guardarIdUsuario} name="idUsuario" type="text"></input>
                     <br/>
                     <label>numeroHabitacion</label>
                     <input onChange={this.guardarNumeroHabitacion} name="" type="text"></input>
