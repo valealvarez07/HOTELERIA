@@ -70,7 +70,7 @@ class Habitacion {
 
     static obtenerHabitacionPorNumero(numeroHabitacion) {
         return new Promise((resolve, reject) => {
-            console.log(numeroHabitacion, valoracion, imagenes, descripcion, tipoHabitacion, precio, comodidades, servicios, tamañoMetros2, disponibilidad);
+            //console.log(numeroHabitacion, valoracion, imagenes, descripcion, tipoHabitacion, precio, comodidades, servicios, tamañoMetros2, disponibilidad);
             db.query(SELECCIONAR_HABITACION_NUMERO, [numeroHabitacion], (err, res) => {
                 //if (err || res[0] === undefined){
                 if (err) {
@@ -85,12 +85,11 @@ class Habitacion {
         })
     }  
 
-    static modificarHabitacion (numeroHabitacion, valoracion, imagenes, descripcion, tipoHabitacion, precio, comodidades, servicios, tamañoMetros2, disponibilidad) {
+    static modificarHabitacion(numeroHabitacion, valoracion, imagenes, descripcion, tipoHabitacion, precio, comodidades, servicios, tamañoMetros2, disponibilidad) {
         return new Promise ((resolve, reject) => {
-            console.log(numeroHabitacion, valoracion, imagenes, descripcion, tipoHabitacion, precio, comodidades, servicios, tamañoMetros2, disponibilidad);
+            //console.log(numeroHabitacion, valoracion, imagenes, descripcion, tipoHabitacion, precio, comodidades, servicios, tamañoMetros2, disponibilidad);
             
             db.query(MODIFICAR_HABITACION, [valoracion, imagenes, descripcion, tipoHabitacion, precio, comodidades, servicios, tamañoMetros2, disponibilidad, numeroHabitacion], (err, res) => {
-
                 if (err) {
                     reject(err)
                 } else {

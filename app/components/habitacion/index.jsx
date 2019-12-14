@@ -11,11 +11,12 @@ class Habitacion extends React.Component {
     return (
       <React.Fragment>
         <li>
-          <h3>numeroHabitacion: {this.props.numeroHabitacion}  --- valoracion: {this.props.valoracion}  ---  tipoHabitacion: {this.props.tipoHabitacion}</h3>
-          <Link to = {`/hoteleria/habitacion/${this.props.numeroHabitacion}`}>modificar habitacion</Link>
+        <h3><Link to = {`/hoteleria/habitacion/${this.props.numeroHabitacion}`}>numeroHabitacion: {this.props.numeroHabitacion}, tipoHabitacion: {this.props.tipoHabitacion}</Link></h3>
+          <p>valoracion: {this.props.valoracion}</p>
 
-          <br/>
           <Link to = {`/hoteleria/crear-reserva`}>reservar habitacion</Link>
+
+          <hr/>
         </li>
       </React.Fragment>
     );

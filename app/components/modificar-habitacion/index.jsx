@@ -46,7 +46,7 @@ class ModificarHabitacion extends React.Component {
     }
 
     render() {
-
+        
         if (this.state.loading) {
             return (
                 <div>Cargando...</div>
@@ -62,53 +62,65 @@ class ModificarHabitacion extends React.Component {
         return (
 
             <React.Fragment>
-                <label>numeroHabitacion</label>
-                <input onChange={this.guardarNumeroHabitacion} type="text"></input>
-                <br/>
-                <label>valoracion</label>
-                <select onChange={this.guardarValoracion} ref="valoracion">
-                    <option value="1 Estrella">1 Estrella</option>
-                    <option value="2 Estrellas">2 Estrellas</option>
-                    <option value="3 Estrellas">3 Estrellas</option>
-                    <option value="4 Estrellas">4 Estrellas</option>
-                    <option value="5 Estrellas">5 Estrellas</option>
-                </select>
-                <br/>
-                <label>imagenes</label>
-                <input onChange={this.guardarImagenes} type="text"></input>
-                <br/>
-                <label>descripcion</label>
-                <input onChange={this.guardarDescripcion} type="text"></input>
-                <br/>
-                <label>tipoHabitacion</label>
-                <select onChange={this.guardarTipoHabitacion} ref="tipoHabitacion">
-                    <option value="1 Persona">1 Persona</option>
-                    <option value="2 Personas">2 Personas</option>
-                    <option value="4 Personas">4 Personas</option>
-                    <option value="Matrimonial">Matrimonial</option>
-                </select>
-                <br/>
-                <label>precio</label>
-                <input onChange={this.guardarPrecio} type="text"></input>
-                <br/>
-                <label>comodidades</label>
-                <input onChange={this.guardarComodidades} type="text"></input>
-                <br/>
-                <label>servicios</label>
-                <input onChange={this.guardarServicios} type="text"></input>
-                <br/>
-                <label>tamañoMetros2</label>
-                <input onChange={this.guardarTamañoMetros2} type="text"></input>
-                <br/>
-                <label>disponibilidad</label>
-                <input onChange={this.guardarDisponibilidad} type="text"></input>
-                <br/>
 
-                <button type="button" onClick={this.modificarHabitacion}>modificar habitacion</button>
+                {/* <h3>numeroHabitacion: {this.props.numeroHabitacion}, tipoHabitacion: {this.props.tipoHabitacion}</h3>
+                <p>valoracion: {this.props.valoracion}</p> */}
 
-                <br/><br/>
+                {this.props.sesionUsuario ?
+                    //<Link to = {`/hoteleria/habitacion/${this.props.numeroHabitacion}`}>modificar habitacion</Link>
+                    <div>
+                        <form>
+                            <label>numeroHabitacion</label>
+                            <input onChange={this.guardarNumeroHabitacion} type="text"></input>
+                            <br/>
+                            <label>valoracion</label>
+                            <select onChange={this.guardarValoracion} ref="valoracionRef">
+                                <option value="1 Estrella">1 Estrella</option>
+                                <option value="2 Estrellas">2 Estrellas</option>
+                                <option value="3 Estrellas">3 Estrellas</option>
+                                <option value="4 Estrellas">4 Estrellas</option>
+                                <option value="5 Estrellas">5 Estrellas</option>
+                            </select>
+                            <br/>
+                            <label>imagenes</label>
+                            <input onChange={this.guardarImagenes} type="text"></input>
+                            <br/>
+                            <label>descripcion</label>
+                            <input onChange={this.guardarDescripcion} type="text"></input>
+                            <br/>
+                            <label>tipoHabitacion</label>
+                            <select onChange={this.guardarTipoHabitacion} ref="tipoHabitacionRef">
+                                <option value="1 Persona">1 Persona</option>
+                                <option value="2 Personas">2 Personas</option>
+                                <option value="4 Personas">4 Personas</option>
+                                <option value="Matrimonial">Matrimonial</option>
+                            </select>
+                            <br/>
+                            <label>precio</label>
+                            <input onChange={this.guardarPrecio} type="text"></input>
+                            <br/>
+                            <label>comodidades</label>
+                            <input onChange={this.guardarComodidades} type="text"></input>
+                            <br/>
+                            <label>servicios</label>
+                            <input onChange={this.guardarServicios} type="text"></input>
+                            <br/>
+                            <label>tamañoMetros2</label>
+                            <input onChange={this.guardarTamañoMetros2} type="text"></input>
+                            <br/>
+                            <label>disponibilidad</label>
+                            <input onChange={this.guardarDisponibilidad} type="text"></input>
+                            <br/>
 
-                <button onClick={this.eliminarHabitacion}>eliminar habitacion</button>
+                            <button type="button" onClick={this.modificarHabitacion}>modificar habitacion</button>
+                        </form>
+                    
+                        <br/><br/>
+
+                        <button onClick={this.eliminarHabitacion}>eliminar habitacion</button>
+
+                    </div>
+                : null}
                 
             </React.Fragment>
         );

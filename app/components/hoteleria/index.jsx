@@ -14,11 +14,10 @@ class Hoteleria extends React.Component {
     return (
       <div>
         <Link to={`/hoteleria/login`}>LOGIN</Link>
-        <br />
+        <br/>
         <Link to={`/hoteleria/register`}>REGISTRARSE</Link>
-        <br />
-        <Link to={`/hoteleria/usuarios`}>usuarios</Link>
-        <br />
+        <br/>
+        
         <ul className="hoteleria">
           {
             habitaciones.map(habitacion => (
@@ -28,15 +27,19 @@ class Hoteleria extends React.Component {
         </ul>
 
         <br />
+
         {this.props.sesionUsuario ?
           <div>
-            <Link to={`/hoteleria/reservas`}>ir a ver reservas</Link>
-            <br />
-            <Link to={'/hoteleria/crear-habitacion'}>ir a crear una habitacion</Link>
-            <br />
+            <Link to={`/hoteleria/usuarios`}>ver usuarios</Link>
+            <br/>
+            <Link to={`/hoteleria/reservas`}>ver reservas</Link>
+            <br/>
+            <Link to={'/hoteleria/crear-habitacion'}>crear una habitacion</Link>
+            <br/>
           </div>
-          : null}
-        <Link to={'/hoteleria/crear-usuario'}>ir a crear un usuario</Link>
+        : null}
+
+        {/* <Link to={'/hoteleria/crear-usuario'}>ir a crear un usuario</Link> */}
       </div>
     );
   }

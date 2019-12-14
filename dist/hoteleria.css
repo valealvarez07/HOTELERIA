@@ -1,3 +1,6 @@
-.hoteleria {
+.hoteleria li:nth-child(odd) {
   background-color: aquamarine; }
+
+.hoteleria li:nth-child(even) {
+  background-color: lightcoral; }
 

@@ -13,6 +13,9 @@ router.get('/', (req, res, next) => {
   const promesaUsuarios = Usuarios.obtenerTodosUsuarios();
   const promesaReservas = Reservas.obtenerTodasReservas();
 
+  //const promesaUsuarios = Usuarios.obtenerUsuarioPorAdmin();
+  
+
   Promise.all([promesaHabitaciones, promesaUsuarios, promesaReservas])
     .then(([habitaciones, usuarios, reservas]) => {
       const initialState = {
@@ -20,6 +23,7 @@ router.get('/', (req, res, next) => {
         usuarios,
         reservas,
         sesionUsuario: req.session.sesionUsuario ? req.session.sesionUsuario : '',
+        admin: res.usuarios.administrador,
       };
 
       const context = {};
