@@ -23,14 +23,16 @@ class Usuario {
     }
 
     save() {
-        const {id, tipoDocumento, numeroDocumento, nombre, sexo, edad, telefono, direccion, email, administrador, contraseña} = this;
+        const {tipoDocumento, numeroDocumento, nombre, sexo, edad, telefono, direccion, email, administrador, contraseña} = this;
         return new Promise((resolve, reject) => {
             db.query(GUARDAR_USUARIO, [tipoDocumento, numeroDocumento, nombre, sexo, edad, telefono, direccion, email, administrador, contraseña], (err, res) => {
                 if (err) {
                     if (err.errno === 1062) {
                         reject ({
-                            error: "Esta id de usuario ya existe"
+                            error: "Este usuario ya existe"
                         });
+                        console.log(err);
+                        
                     } else {
                         reject (err);
                     }
