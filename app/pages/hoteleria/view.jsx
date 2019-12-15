@@ -60,7 +60,7 @@ class HoteleriaPage extends React.Component {
                 <Route
                     exact
                     path = "/hoteleria/crear-reserva"
-                    render = {(props) => <CrearReserva {...props} />}
+                    render = {(props) => <CrearReserva {...props} sesionUsuario={sesionUsuario}/>}
                 />
                 <Route
                     path = "/hoteleria/habitacion/:numeroHabitacion"

@@ -17,6 +17,7 @@ router.get('/', (req, res, next) => {
     });
 });
 
+
 router.get('/:id', (req, res, next) => {
 
     Usuario.obtenerUsuarioPorId(req.params.id)
@@ -38,7 +39,8 @@ router.post('/login', (req, res, next) => {
         if(usuario.contraseña === req.body.password){
             req.session.sesionUsuario = usuario.id;
             req.session.administrador = usuario.administrador;
-            res.send("iniciaste sesion");
+            // res.send("iniciaste sesion");
+            res.redirect(301, 'http://localhost:3000/hoteleria');
         } else{
             res.send("error al iniciar sesion");
         }
@@ -47,6 +49,13 @@ router.post('/login', (req, res, next) => {
     .catch(err => {
         next(err);
     });
+});
+
+router.get('/cerrarSesion', (req, res, next) => {
+
+    req.session.sesionUsuario = null;
+    req.session.administrador = null;
+    res.redirect('/hoteleria');
 });
 
 router.post('/', (req, res, next) => {

@@ -7,7 +7,6 @@ class CrearReserva extends React.Component {
         super(props);
 
         this.guardarNumeroReserva = this.guardarNumeroReserva.bind(this);
-        this.guardarIdUsuario = this.guardarIdUsuario.bind(this);
         this.guardarNumeroHabitacion = this.guardarNumeroHabitacion.bind(this);
         this.guardarFechaLlegada = this.guardarFechaLlegada.bind(this);
         this.guardarFechaSalida = this.guardarFechaSalida.bind(this);
@@ -45,7 +44,7 @@ class CrearReserva extends React.Component {
                 window.location.href = "/hoteleria"
             )
         }
-        
+
 
         return (
 
@@ -53,28 +52,25 @@ class CrearReserva extends React.Component {
                 <form method="POST" action="/api/reservas" encType="application/x-www-form-urlencoded">
 
                     {/* <p>numeroHabitacion: {this.state.habitacion.numeroHabitacion}</p> */}
-                    
-                    <label htmlFor='idUsuario'>idUsuario</label>
-                    <input onChange={this.guardarIdUsuario} name="idUsuario" type="number"></input>
-                    <br/>
+
                     <label>numeroHabitacion</label>
                     <input onChange={this.guardarNumeroHabitacion} name="" type="number"></input>
-                    <br/>
+                    <br />
                     <label>fechaLlegada</label>
                     <input onChange={this.guardarFechaLlegada} name="" type="date"></input>
-                    <br/>
+                    <br />
                     <label>fechaSalida</label>
                     <input onChange={this.guardarFechaSalida} name="" type="date"></input>
-                    <br/>
+                    <br />
                     <label>modoPago</label>
                     <select onChange={this.guardarModoPago} ref="modoPagoRef">
                         <option value="Efectivo">Efectivo</option>
                         <option value="Tarjeta">Tarjeta</option>
                     </select>
-                    <br/>
+                    <br />
                     <label>cantidadHuespedes</label>
                     <input onChange={this.guardarCantidadHuespedes} name="" type="number"></input>
-                    <br/>
+                    <br />
 
                     <button type="button" onClick={this.crearReserva}>crear reserva</button>
                 </form>
@@ -82,10 +78,10 @@ class CrearReserva extends React.Component {
         );
     }
 
-    crearReserva (e){
+    crearReserva(e) {
         //e.preventDefault();
-        fetch ('/api/reservas', {
-            headers: {"Content-Type": "application/json; charset=utf-8"},
+        fetch('/api/reservas', {
+            headers: { "Content-Type": "application/json; charset=utf-8" },
             method: 'POST',
             body: JSON.stringify({
                 numeroReserva: this.numeroReserva,
@@ -98,43 +94,43 @@ class CrearReserva extends React.Component {
             })
         })
 
-        .then ((data) => {
-            //console.log(data);
+            .then((data) => {
+                //console.log(data);
 
-            this.setState ({ 
-                redireccionar: true,
-            });            
-        })
+                this.setState({
+                    redireccionar: true,
+                });
+            })
 
-        .catch(err => {
-            this.setState ({ 
-                error: err.error,
+            .catch(err => {
+                this.setState({
+                    error: err.error,
+                });
+                console.log(err);
             });
-            console.log(err);
-        });
-        
+
     }
 
-    guardarNumeroReserva (event) {
+    guardarNumeroReserva(event) {
         this.numeroReserva = event.target.value;
     }
-    guardarIdUsuario (event) {
+    guardarIdUsuario(event) {
         //console.log('event', this.refs.valoracionRef.value);
         this.idUsuario = event.target.value;
     }
-    guardarNumeroHabitacion (event) {
+    guardarNumeroHabitacion(event) {
         this.numeroHabitacion = event.target.value;
     }
-    guardarFechaLlegada (event) {
+    guardarFechaLlegada(event) {
         this.fechaLlegada = event.target.value;
     }
-    guardarFechaSalida (event) {
+    guardarFechaSalida(event) {
         this.fechaSalida = event.target.value;
     }
-    guardarModoPago (event) {
+    guardarModoPago(event) {
         this.modoPago = event.target.value;
     }
-    guardarCantidadHuespedes (event) {
+    guardarCantidadHuespedes(event) {
         this.cantidadHuespedes = event.target.value;
     }
 };
