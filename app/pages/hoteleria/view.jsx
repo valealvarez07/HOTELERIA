@@ -16,7 +16,7 @@ const Registro = require('../../components/register');
 class HoteleriaPage extends React.Component {
 
     render() {
-        const { habitaciones, usuarios, reservas, sesionUsuario } = this.props.initialState;
+        const { habitaciones, usuarios, reservas, sesionUsuario,administrador } = this.props.initialState;
 
         return (
 
@@ -34,7 +34,7 @@ class HoteleriaPage extends React.Component {
                 <Route
                     exact
                     path = "/hoteleria"
-                    render = {(props) => <Hoteleria {...props} sesionUsuario={sesionUsuario} habitaciones={habitaciones}/>}
+                    render = {(props) => <Hoteleria {...props} administrador={administrador} sesionUsuario={sesionUsuario} habitaciones={habitaciones}/>}
                    // render = {(props) => <Habitacion {...props} habitaciones={habitaciones} />}
                 />
                 <Route

@@ -36,7 +36,8 @@ router.post('/login', (req, res, next) => {
     Usuario.obtenerUsuarioPorId(req.body.usuario)
     .then(usuario => {
         if(usuario.contraseña === req.body.password){
-            req.session.sesionUsuario = req.body.usuario;
+            req.session.sesionUsuario = usuario.id;
+            req.session.administrador = usuario.administrador;
             res.send("iniciaste sesion");
         } else{
             res.send("error al iniciar sesion");

@@ -16,7 +16,7 @@ class Habitacion extends React.Component {
           
           <h3>numeroHabitacion: {this.props.numeroHabitacion}  ----  tipoHabitacion: {this.props.tipoHabitacion}  ----  precio: ${this.props.precio}</h3>
           <p>valoracion: {this.props.valoracion}</p>
-          <p>imagenes: {this.props.imagenes}</p>
+          <img alt='imgHabitacion' src={`/imagenes/${this.props.imagenes}`}></img>
           <p>descripcion: {this.props.descripcion}</p>
           <p>comodidades: {this.props.comodidades}</p>
           <p>servicios: {this.props.servicios}</p>
@@ -26,9 +26,9 @@ class Habitacion extends React.Component {
           <Link to = {`/hoteleria/crear-reserva`}>reservar habitacion</Link>
           <br/>
 
-          {/* {this.props.sesionUsuario ? */}
+          {this.props.administrador === 1 ?
               <Link to={`/hoteleria/habitacion/${this.props.numeroHabitacion}`}>modificar habitacion</Link>
-          {/* : null} */}
+           : null}
 
           <hr/>
         </li>

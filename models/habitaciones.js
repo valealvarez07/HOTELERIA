@@ -35,13 +35,6 @@ class Habitacion {
                         reject (err);
                     }
                 } else{
-                    res.sendFile(req.params.imagenes, options, function (err){
-                        if (err) {
-                            next(err)
-                          } else {
-                            console.log('enviado:', req.params.imagenes)
-                          }
-                    })
                     resolve()
                 }
             }); 

@@ -1,6 +1,6 @@
 const router = require('express').Router(); 
 const multer = require('multer');
-const upload = multer({ dest: 'imagenes/'});
+const upload = multer({ dest: 'dist/imagenes/'});
 
 const Habitacion = require('../../models/habitaciones');
 
@@ -48,12 +48,13 @@ router.get('/:numeroHabitacion', (req, res, next) => {
 //     });
 // });
 
-router.post('/', upload.single('fotoHabitacion'), (req, res, next) => {
+router.post('/', upload.single('imagenes'), (req, res, next) => {
 
+    
     const numeroHabitacion = req.body.numeroHabitacion;
     const valoracion = req.body.valoracion;
     //const imagenes = req.body.imagenes;
-    const imagenes = req.file.imagenes;
+    const imagenes = req.file.filename;
     const descripcion = req.body.descripcion;
     const tipoHabitacion = req.body.tipoHabitacion;
     const precio = req.body.precio;

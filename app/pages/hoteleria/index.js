@@ -23,6 +23,7 @@ router.get('/', (req, res, next) => {
         usuarios,
         reservas,
         sesionUsuario: req.session.sesionUsuario ? req.session.sesionUsuario : '',
+        administrador: req.session.administrador ? req.session.administrador : '',
       };
 
       const context = {};

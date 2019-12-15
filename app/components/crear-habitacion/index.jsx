@@ -93,7 +93,7 @@ class CrearHabitacion extends React.Component {
                     <input onChange={this.guardarTamañoMetros2} type="text"></input>
                     <br/>
                     <label>disponibilidad</label>
-                    <input onChange={this.guardarDisponibilidad} type="text"></input>
+                    <input onChange={this.guardarDisponibilidad} type="date"></input>
                     <br/>
 
                     <button type="button" onClick={this.crearHabitacion}>crear habitacion</button>
@@ -104,25 +104,44 @@ class CrearHabitacion extends React.Component {
 
     crearHabitacion (e){
         //e.preventDefault();
+
+        var data = new FormData();
+        data.append('numeroHabitacion', this.numeroHabitacion);
+        data.append('valoracion', this.refs.valoracionRef.value);
+        data.append('imagenes', this.imagenes);
+        data.append('descripcion', this.descripcion);
+        data.append('tipoHabitacion', this.refs.tipoHabitacionRef.value);
+        data.append('precio', this.precio);
+        data.append('comodidades', this.comodidades);
+        data.append('servicios', this.servicios);
+        data.append('tamañoMetros2', this.tamañoMetros2);
+        data.append('disponibilidad', this.disponibilidad);
+
+
         fetch ('/api/habitaciones', {
-            headers: {"Content-Type": "application/json; charset=utf-8"},
             method: 'POST',
-            body: JSON.stringify({
-                numeroHabitacion: this.numeroHabitacion,
-                valoracion: this.refs.valoracionRef.value,
-                imagenes: this.imagenes,
-                descripcion: this.descripcion,
-                tipoHabitacion: this.refs.tipoHabitacionRef.value,
-                precio: this.precio,
-                comodidades: this.comodidades,
-                servicios: this.servicios,
-                tamañoMetros2: this.tamañoMetros2,
-                disponibilidad: this.disponibilidad,
-            })
+            body: data,
         })
 
+        // fetch ('/api/habitaciones', {
+        //     headers: {"Content-Type": "application/json; charset=utf-8"},
+        //     method: 'POST',
+        //     body: JSON.stringify({
+        //         numeroHabitacion: this.numeroHabitacion,
+        //         valoracion: this.refs.valoracionRef.value,
+        //         imagenes: this.imagenes,
+        //         descripcion: this.descripcion,
+        //         tipoHabitacion: this.refs.tipoHabitacionRef.value,
+        //         precio: this.precio,
+        //         comodidades: this.comodidades,
+        //         servicios: this.servicios,
+        //         tamañoMetros2: this.tamañoMetros2,
+        //         disponibilidad: this.disponibilidad,
+        //     })
+        // })
+
         .then ((data) => {
-            //console.log(data);
+            console.log(data);
 
             this.setState ({ 
                 redireccionar: true,
@@ -146,7 +165,9 @@ class CrearHabitacion extends React.Component {
         this.valoracion = event.target.value;
     }
     guardarImagenes (event) {
-        this.imagenes = event.target.value;
+        console.log(event.target.files[0]);
+        
+        this.imagenes = event.target.files[0];
     }
     guardarDescripcion (event) {
         this.descripcion = event.target.value;
