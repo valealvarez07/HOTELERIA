@@ -2,7 +2,7 @@ const React = require('react');
 const {Route} = require('react-router-dom');
 
 const Hoteleria = require('../../components/hoteleria');
-//const Habitacion = require('../../components/habitacion');
+
 const CrearHabitacion = require('../../components/crear-habitacion');
 const CrearUsuario = require('../../components/crear-usuario');
 const CrearReserva = require('../../components/crear-reserva');
@@ -66,10 +66,7 @@ class HoteleriaPage extends React.Component {
                     path = "/hoteleria/habitacion/:numeroHabitacion"
                     render = {(props) => <ModificarHabitacion {...props} numeroHabitacion={props.match.params.numeroHabitacion} />}
                 />
-                {/* <Route
-                    path = "/hoteleria/habitacion/:tipoHabitacion"
-                    render = {(props) => <Habitacion {...props} tipoHabitacion={props.match.params.tipoHabitacion} />}
-                /> */}
+
             </React.Fragment>
         );
 }

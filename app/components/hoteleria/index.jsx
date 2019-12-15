@@ -6,6 +6,7 @@ const Habitacion = require('../habitacion');
 class Hoteleria extends React.Component {
 
    render() {
+    const {habitaciones} = this.props;
 
     return (
       <div>
