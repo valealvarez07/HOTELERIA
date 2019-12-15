@@ -4,6 +4,7 @@ const db = require('../services/db-connection');
 const GUARDAR_HABITACION = 'INSERT INTO habitaciones VALUES(?,?,?,?,?,?,?,?,?,?)'; 
 const SELECCIONAR_TODAS_HABITACIONES = 'SELECT * FROM habitaciones';
 const SELECCIONAR_HABITACION_NUMERO = 'SELECT * FROM habitaciones WHERE numeroHabitacion = ?';
+const SELECCIONAR_HABITACION_TIPO = 'SELECT * FROM habitaciones WHERE tipoHabitacion = ?';
 const MODIFICAR_HABITACION = 'UPDATE habitaciones SET valoracion = ?, imagenes = ?, descripcion = ?, tipoHabitacion = ?, precio = ?, comodidades = ?, servicios = ?, tamañoMetros2 = ?, disponibilidad = ? WHERE numeroHabitacion = ?';
 const ELIMINAR_HABITACIONES = 'DELETE FROM habitaciones WHERE numeroHabitacion = ?';
 
@@ -77,8 +78,23 @@ class Habitacion {
 
     static obtenerHabitacionPorNumero(numeroHabitacion) {
         return new Promise((resolve, reject) => {
-            //console.log(numeroHabitacion, valoracion, imagenes, descripcion, tipoHabitacion, precio, comodidades, servicios, tamañoMetros2, disponibilidad);
             db.query(SELECCIONAR_HABITACION_NUMERO, [numeroHabitacion], (err, res) => {
+                //if (err || res[0] === undefined){
+                if (err) {
+                    reject(err);
+                } else if (res.length === 0) {
+                    reject(new Error('No hay resultados'));
+                } else {
+                    const {numeroHabitacion, valoracion, imagenes, descripcion, tipoHabitacion, precio, comodidades, servicios, tamañoMetros2, disponibilidad} = res[0];
+                    resolve (new Habitacion(numeroHabitacion, valoracion, imagenes, descripcion, tipoHabitacion, precio, comodidades, servicios, tamañoMetros2, disponibilidad));
+                }
+            }); 
+        })
+    }  
+
+    static obtenerHabitacionPorTipo(tipoHabitacion) {
+        return new Promise((resolve, reject) => {
+            db.query(SELECCIONAR_HABITACION_TIPO, [tipoHabitacion], (err, res) => {
                 //if (err || res[0] === undefined){
                 if (err) {
                     reject(err);

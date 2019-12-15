@@ -101,7 +101,7 @@ class CrearUsuario extends React.Component {
                     <input onChange={this.guardarAdministrador} ref="administradorRef" type="checkbox" name="administrador" value="0">No</input>
                     <br/>
                     <label>contraseña</label>
-                    <input onChange={this.guardarContraseña} type="text"></input>
+                    <input onChange={this.guardarContraseña} type="password"></input>
 
                     <button type="button" onClick={this.crearUsuario}>crear usuario</button>
                 </form>

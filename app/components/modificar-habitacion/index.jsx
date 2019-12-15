@@ -200,7 +200,9 @@ class ModificarHabitacion extends React.Component {
         })
     
         .then ((data) => {
-          window.location.href = "/hoteleria";
+            this.setState ({ 
+                redireccionar: true,
+            }); 
           
       })
     

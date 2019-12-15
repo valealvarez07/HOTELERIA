@@ -34,6 +34,20 @@ router.get('/:numeroHabitacion', (req, res, next) => {
     });
 });
 
+router.get('/:tipoHabitacion', (req, res, next) => {
+
+    Habitacion.obtenerHabitacionPorTipo(req.params.tipoHabitacion)
+    .then(habitacion => {
+        res.json({
+            habitacion,
+        });
+    })
+    
+    .catch(err => {
+        next(err);
+    });
+});
+
 router.post('/', upload.single('fotoHabitacion'), (req, res, next) => {
 
     const numeroHabitacion = req.body.numeroHabitacion;

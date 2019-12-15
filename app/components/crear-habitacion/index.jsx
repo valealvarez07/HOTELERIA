@@ -76,8 +76,8 @@ class CrearHabitacion extends React.Component {
                     <select onChange={this.guardarTipoHabitacion} ref="tipoHabitacionRef">
                         <option value="1 Persona">1 Persona</option>
                         <option value="2 Personas">2 Personas</option>
-                        <option value="4 Personas">3 Personas</option>
-                        <option value="Matrimonial">4 Personas</option>
+                        <option value="4 Personas">4 Personas</option>
+                        <option value="Matrimonial">Matrimonial</option>
                     </select>
                     <br/>
                     <label>precio</label>
@@ -127,7 +127,7 @@ class CrearHabitacion extends React.Component {
             this.setState ({ 
                 redireccionar: true,
             });            
-        })
+    })
 
         .catch(err => {
             this.setState ({ 

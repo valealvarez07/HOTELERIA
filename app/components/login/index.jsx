@@ -9,10 +9,10 @@ class Login extends React.Component {
         return (
             <form method="POST" action="/api/usuarios/login" encType="application/x-www-form-urlencoded">
                 <label>usuario: numeroDocumento</label>
-                <input type="text" name="usuario" id="usuario"></input>
+                <input type="number" name="usuario" id="usuario"></input>
 
                 <label>contraseña</label>
-                <input type="text" name="password" id="password"></input>
+                <input type="password" name="password" id="password"></input>
 
                 <button type="submit">ENVIAR</button>
             </form>

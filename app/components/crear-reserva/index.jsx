@@ -55,16 +55,16 @@ class CrearReserva extends React.Component {
                     {/* <p>numeroHabitacion: {this.state.habitacion.numeroHabitacion}</p> */}
                     
                     <label htmlFor='idUsuario'>idUsuario</label>
-                    <input onChange={this.guardarIdUsuario} name="idUsuario" type="text"></input>
+                    <input onChange={this.guardarIdUsuario} name="idUsuario" type="number"></input>
                     <br/>
                     <label>numeroHabitacion</label>
-                    <input onChange={this.guardarNumeroHabitacion} name="" type="text"></input>
+                    <input onChange={this.guardarNumeroHabitacion} name="" type="number"></input>
                     <br/>
                     <label>fechaLlegada</label>
-                    <input onChange={this.guardarFechaLlegada} name="" type="text"></input>
+                    <input onChange={this.guardarFechaLlegada} name="" type="date"></input>
                     <br/>
                     <label>fechaSalida</label>
-                    <input onChange={this.guardarFechaSalida} name="" type="text"></input>
+                    <input onChange={this.guardarFechaSalida} name="" type="date"></input>
                     <br/>
                     <label>modoPago</label>
                     <select onChange={this.guardarModoPago} ref="modoPagoRef">
@@ -73,7 +73,7 @@ class CrearReserva extends React.Component {
                     </select>
                     <br/>
                     <label>cantidadHuespedes</label>
-                    <input onChange={this.guardarCantidadHuespedes} name="" type="text"></input>
+                    <input onChange={this.guardarCantidadHuespedes} name="" type="number"></input>
                     <br/>
 
                     <button type="button" onClick={this.crearReserva}>crear reserva</button>

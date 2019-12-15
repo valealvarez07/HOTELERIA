@@ -10,9 +10,7 @@ const {Link} = require('react-router-dom');
 class Hoteleria extends React.Component {
 
     render() {
-        const {reservas} = this.props;
-        console.log(this.props.sesionUsuario);
-        
+        const {reservas} = this.props;      
 
         return (
 

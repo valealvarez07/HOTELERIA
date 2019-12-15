@@ -5,8 +5,7 @@ const Habitacion = require('../habitacion');
 
 class Hoteleria extends React.Component {
 
-  render() {
-    const { habitaciones } = this.props;
+   render() {
 
     return (
       <div>
@@ -14,7 +13,7 @@ class Hoteleria extends React.Component {
         <br/>
         <Link to={`/hoteleria/register`}>REGISTRARSE</Link>
         <br/>
-        
+
         <ul className="hoteleria">
           {
             habitaciones.map(habitacion => (

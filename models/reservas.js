@@ -1,14 +1,17 @@
 
 const db = require('../services/db-connection');
 
-const GUARDAR_RESERVA = 'INSERT INTO reservas VALUES(0,?,?,?,?,?,?)'; 
+const GUARDAR_RESERVA = 'INSERT INTO reservas VALUES (0,?,?,?,?,?,?)'; 
 const SELECCIONAR_TODAS_RESERVAS = 'SELECT * FROM reservas';
 //const SELECCIONAR_RESERVA = 'SELECT * FROM reservas WHERE numeroReserva = ?';
 const ELIMINAR_RESERVA = 'DELETE FROM reservas WHERE numeroReserva = ?';
 
-// const GUARDAR_RESERVAs = 'select * from reservas where "fechaLlegada" between to_date('01/01/2019','dd/mm/yyyy') and to_date('06/02/2019','dd/mm/yyyy')';
-const GUARDAR_RESERVAs = 'SELECT * FROM reservas WHERE fechaLlegada, fechaSalida BETWEEN to_date(?,"yyyy/mm/dd") AND to_date(?,"yyyy/mm/dd")';
+// const SELECCIONAR_FECHA = 'select * from reservas where "fechaLlegada" between to_date('01/01/2019','dd/mm/yyyy') and to_date('06/02/2019','dd/mm/yyyy')';
+//const SELECCIONAR_FECHA = 'SELECT * FROM reservas WHERE fechaLlegada, fechaSalida BETWEEN to_date(?,"yyyy/mm/dd") AND to_date(?,"yyyy/mm/dd")';
+//const SELECCIONAR_FECHA = 'SELECT * FROM reservas WHERE fechaLlegada, fechaSalida BETWEEN ? AND ?';
+const SELECCIONAR_FECHA = 'SELECT * FROM reservas WHERE fechaLlegada BETWEEN 2018-01-01 AND 2018-12-12 AND fechaSalida BETWEEN 2018-01-01 AND 2018-12-12';
 
+const SELECCIONAR_FECHA2 = 'SELECT * FROM reservas WHERE fecha >= fechaLlegada AND fecha <= fechaSalida';
 
 
 class Reserva {
@@ -31,12 +34,13 @@ class Reserva {
                     //    reject ({
                     //       error: "Este numero de reserva ya existe"
                     //    });
-                    if (res.fechaLlegada){
-
-                    } else {
+                    //} else {
                         reject (err);
-                    }
-                } else{
+                    //}
+                //} else if (){
+
+                } 
+                else{
                     resolve()
                 }
             }); 
