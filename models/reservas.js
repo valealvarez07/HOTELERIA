@@ -9,9 +9,12 @@ const ELIMINAR_RESERVA = 'DELETE FROM reservas WHERE numeroReserva = ?';
 // const SELECCIONAR_FECHA = 'select * from reservas where "fechaLlegada" between to_date('01/01/2019','dd/mm/yyyy') and to_date('06/02/2019','dd/mm/yyyy')';
 //const SELECCIONAR_FECHA = 'SELECT * FROM reservas WHERE fechaLlegada, fechaSalida BETWEEN to_date(?,"yyyy/mm/dd") AND to_date(?,"yyyy/mm/dd")';
 //const SELECCIONAR_FECHA = 'SELECT * FROM reservas WHERE fechaLlegada, fechaSalida BETWEEN ? AND ?';
-const SELECCIONAR_FECHA = 'SELECT * FROM reservas WHERE fechaLlegada BETWEEN 2018-01-01 AND 2018-12-12 AND fechaSalida BETWEEN 2018-01-01 AND 2018-12-12';
+const SELECCIONAR_FECHA1 = 'SELECT * FROM reservas WHERE fechaLlegada BETWEEN 2018-01-01 AND 2018-12-12 AND fechaSalida BETWEEN 2018-01-01 AND 2018-12-12';
 
 const SELECCIONAR_FECHA2 = 'SELECT * FROM reservas WHERE fecha >= fechaLlegada AND fecha <= fechaSalida';
+
+//const SELECCIONAR_FECHA = 'SELECT * FROM reservas WHERE numeroHabitacion = ? AND fechaLlegada <= fechaLlegadaNueva AND fechaSalida >= fechaLlegadaNueva OR fechaLlegada <= fechaSalidaNueva AND fechaSalida >= fechaSalidaNueva';
+  const SELECCIONAR_FECHA = 'SELECT * FROM reservas WHERE numeroHabitacion = ? AND fechaLlegada <=         ?         AND fechaSalida >=         ?         OR fechaLlegada <=        ?         AND fechaSalida >=        ?';
 
 
 class Reserva {
@@ -26,26 +29,49 @@ class Reserva {
     }
 
     save() {
-        const {numeroReserva, idUsuario, numeroHabitacion, fechaLlegada, fechaSalida, modoPago, cantidadHuespedes} = this;
-        return new Promise ((resolve, reject) => {
-            db.query(GUARDAR_RESERVA, [idUsuario, numeroHabitacion, fechaLlegada, fechaSalida, modoPago, cantidadHuespedes], (err, res) => {
-                if (err) {
-                    // if (err.errno === 1062) {
-                    //    reject ({
-                    //       error: "Este numero de reserva ya existe"
-                    //    });
-                    //} else {
-                        reject (err);
-                    //}
-                //} else if (){
+        const {idUsuario, numeroHabitacion, fechaLlegada, fechaSalida, modoPago, cantidadHuespedes} = this;
 
-                } 
-                else{
-                    resolve()
+        return new Promise ((resolve, reject) => {
+
+            db.query(SELECCIONAR_FECHA, [numeroHabitacion, fechaLlegada, fechaLlegada, fechaSalida, fechaSalida], (err, res) => {
+                if (err) {
+                    reject (err);
+                    console.log(err);
+
+                } else if (res.length !== 0) {
+                    console.log('las fechas se solapan');
+
+                } else if (res.length === 0) {
+                    db.query(GUARDAR_RESERVA, [idUsuario, numeroHabitacion, fechaLlegada, fechaSalida, modoPago, cantidadHuespedes], (err, res) => {
+                        if (err) {
+                            reject (err);
+                        } else {
+                            resolve()
+                        }
+                    });
                 }
-            }); 
+            });
+
+            
         }); 
     }
+
+    // db.query(GUARDAR_RESERVA, [idUsuario, numeroHabitacion, fechaLlegada, fechaSalida, modoPago, cantidadHuespedes], (err, res) => {
+    //     if (err) {
+    //         // if (err.errno === 1062) {
+    //         //    reject ({
+    //         //       error: "Este numero de reserva ya existe"
+    //         //    });
+    //         //} else {
+    //             reject (err);
+    //         //}
+    //     //} else if (){
+
+    //     } 
+    //     else{
+    //         resolve()
+    //     }
+    // }); 
 
     static obtenerTodasReservas () {
         return new Promise ((resolve, reject) => {
