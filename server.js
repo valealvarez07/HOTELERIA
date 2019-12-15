@@ -9,8 +9,7 @@ require('@babel/register')({
   const appRouter = require('./app');
 
   const multer =require('multer');
-
-  const upload = multer({ dest: 'dist/imagenes/'});
+ // const upload = multer({ dest: 'dist/imagenes/'});
   
   const app = express();
   

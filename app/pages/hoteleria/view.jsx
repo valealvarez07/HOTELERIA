@@ -66,10 +66,10 @@ class HoteleriaPage extends React.Component {
                     path = "/hoteleria/habitacion/:numeroHabitacion"
                     render = {(props) => <ModificarHabitacion {...props} numeroHabitacion={props.match.params.numeroHabitacion} />}
                 />
-                <Route
+                {/* <Route
                     path = "/hoteleria/habitacion/:tipoHabitacion"
                     render = {(props) => <Habitacion {...props} tipoHabitacion={props.match.params.tipoHabitacion} />}
-                />
+                /> */}
             </React.Fragment>
         );
 }

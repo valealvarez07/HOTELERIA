@@ -92,21 +92,21 @@ class Habitacion {
         })
     }  
 
-    static obtenerHabitacionPorTipo(tipoHabitacion) {
-        return new Promise((resolve, reject) => {
-            db.query(SELECCIONAR_HABITACION_TIPO, [tipoHabitacion], (err, res) => {
-                //if (err || res[0] === undefined){
-                if (err) {
-                    reject(err);
-                } else if (res.length === 0) {
-                    reject(new Error('No hay resultados'));
-                } else {
-                    const {numeroHabitacion, valoracion, imagenes, descripcion, tipoHabitacion, precio, comodidades, servicios, tamañoMetros2, disponibilidad} = res[0];
-                    resolve (new Habitacion(numeroHabitacion, valoracion, imagenes, descripcion, tipoHabitacion, precio, comodidades, servicios, tamañoMetros2, disponibilidad));
-                }
-            }); 
-        })
-    }  
+    // static obtenerHabitacionPorTipo(tipoHabitacion) {
+    //     return new Promise((resolve, reject) => {
+    //         db.query(SELECCIONAR_HABITACION_TIPO, [tipoHabitacion], (err, res) => {
+    //             //if (err || res[0] === undefined){
+    //             if (err) {
+    //                 reject(err);
+    //             } else if (res.length === 0) {
+    //                 reject(new Error('No hay resultados'));
+    //             } else {
+    //                 const {numeroHabitacion, valoracion, imagenes, descripcion, tipoHabitacion, precio, comodidades, servicios, tamañoMetros2, disponibilidad} = res[0];
+    //                 resolve (new Habitacion(numeroHabitacion, valoracion, imagenes, descripcion, tipoHabitacion, precio, comodidades, servicios, tamañoMetros2, disponibilidad));
+    //             }
+    //         }); 
+    //     })
+    // }  
 
     static modificarHabitacion(numeroHabitacion, valoracion, imagenes, descripcion, tipoHabitacion, precio, comodidades, servicios, tamañoMetros2, disponibilidad) {
         return new Promise ((resolve, reject) => {

@@ -34,19 +34,19 @@ router.get('/:numeroHabitacion', (req, res, next) => {
     });
 });
 
-router.get('/:tipoHabitacion', (req, res, next) => {
+// router.get('/:tipoHabitacion', (req, res, next) => {
 
-    Habitacion.obtenerHabitacionPorTipo(req.params.tipoHabitacion)
-    .then(habitacion => {
-        res.json({
-            habitacion,
-        });
-    })
+//     Habitacion.obtenerHabitacionPorTipo(req.params.tipoHabitacion)
+//     .then(habitacion => {
+//         res.json({
+//             habitacion,
+//         });
+//     })
     
-    .catch(err => {
-        next(err);
-    });
-});
+//     .catch(err => {
+//         next(err);
+//     });
+// });
 
 router.post('/', upload.single('fotoHabitacion'), (req, res, next) => {
 
