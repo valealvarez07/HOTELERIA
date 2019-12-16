@@ -5,7 +5,7 @@ const GUARDAR_USUARIO = 'INSERT INTO usuarios VALUES(0,?,?,?,?,?,?,?,?,?,?)';
 const SELECCIONAR_TODOS_USUARIOS = 'SELECT * FROM usuarios';
 const SELECCIONAR_USUARIO_numeroDocumento = 'SELECT * FROM usuarios WHERE numeroDocumento = ?';
 const SELECCIONAR_USUARIO_admin = 'SELECT * FROM usuarios WHERE administrador = ?';
-//const MODIFICAR_HABITACION = 'UPDATE habitaciones SET tipoDocumento = ?, numeroDocumento = ?, nombre = ?, sexo = ?, edad = ?, telefono = ?, direccion = ?, email = ?, administrador = ?, contraseña = ? WHERE id = ?';
+const MODIFICAR_HABITACION = 'UPDATE habitaciones SET tipoDocumento = ?, numeroDocumento = ?, nombre = ?, sexo = ?, edad = ?, telefono = ?, direccion = ?, email = ?, administrador = ?, contraseña = ? WHERE id = ?';
 const ELIMINAR_USUARIO = 'DELETE FROM usuarios WHERE id = ?';
 
 class Usuario {
@@ -91,34 +91,25 @@ class Usuario {
         })
     }
 
-    // static modificarHabitacion (numeroHabitacion, valoracion, imagenes, descripcion, tipoHabitacion, precio, comodidades, servicios, tamañoMetros2, disponibilidad) {
-    //     return new Promise ((resolve, reject) => {
-    //         console.log(numeroHabitacion, valoracion, imagenes, descripcion, tipoHabitacion, precio, comodidades, servicios, tamañoMetros2, disponibilidad);
-            
-    //         db.query(MODIFICAR_HABITACION, [valoracion, imagenes, descripcion, tipoHabitacion, precio, comodidades, servicios, tamañoMetros2, disponibilidad, numeroHabitacion], (err, resp) => {
+    static modificarHabitacion (numeroHabitacion, valoracion, imagenes, descripcion, tipoHabitacion, precio, comodidades, servicios, tamañoMetros2, disponibilidad) {
+        return new Promise ((resolve, reject) => {            
+            db.query(MODIFICAR_HABITACION, [valoracion, imagenes, descripcion, tipoHabitacion, precio, comodidades, servicios, tamañoMetros2, disponibilidad, numeroHabitacion], (err, resp) => {
 
-    //             if (err) {
-    //                 reject(err)
-    //             } else {
-    //                 resolve()
-    //             }
-
+                if (err) {
+                    if (err.errno === 1062) {
+                        resolve ({
+                            error: "Esta habitacion ya existe"
+                        });
+                    } else {
+                       reject (err);
+                    }
+                 } else {
+                    resolve()
+                 }
                 
-    //             //if (err) {
-    //             //    if (err.errno === 1062) {
-    //             //        resolve ({
-    //             //            error: "Esta habitacion ya existe"
-    //             //        });
-    //             //    } else {
-    //             //       reject (err);
-    //             //    }
-    //             //} else {
-    //             //    resolve()
-    //             //}
-                
-    //         }); 
-    //     });     
-    // }
+            }); 
+        });     
+    }
 
     static eliminarUsuarioPorId (id) {
         return new Promise ((resolve, reject) => {

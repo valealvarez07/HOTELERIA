@@ -11,9 +11,7 @@ class Habitacion extends React.Component {
     return (
       <React.Fragment>
 
-        <li>
-          {/* <h3><Link to = {`/hoteleria/habitacion/${this.props.numeroHabitacion}`}>numeroHabitacion: {this.props.numeroHabitacion}, tipoHabitacion: {this.props.tipoHabitacion}</Link></h3> */}
-          
+        <li>          
           <h3>numeroHabitacion: {this.props.numeroHabitacion}  ----  tipoHabitacion: {this.props.tipoHabitacion}  ----  precio: ${this.props.precio}</h3>
           <p>valoracion: {this.props.valoracion}</p>
           <img alt='imgHabitacion' src={`/imagenes/${this.props.imagenes}`}></img>
@@ -23,7 +21,12 @@ class Habitacion extends React.Component {
           <p>tamañoMetros2: {this.props.tamañoMetros2}</p>
           <p>disponibilidad: {this.props.disponibilidad}</p>
 
-          <Link to = {`/hoteleria/crear-reserva`}>reservar habitacion</Link>
+          {this.props.sesionUsuario ?
+          <div>
+            <Link to = {`/hoteleria/crear-reserva`}>reservar habitacion</Link>
+          </div>
+          : null}
+
           <br/>
 
           {this.props.administrador === 1 ?

@@ -76,7 +76,7 @@ router.post('/', (req, res, next) => {
 
     nuevoUsuario.save()
     .then(() => {
-        res.send ('creaste un usuario');
+        res.redirect(301, 'http://localhost:3000/hoteleria');
     })
 
     .catch(err => {

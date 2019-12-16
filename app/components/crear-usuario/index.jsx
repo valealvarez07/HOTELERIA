@@ -46,24 +46,9 @@ class CrearUsuario extends React.Component {
             return (
                 window.location.href = "/hoteleria"
             )
-        }
-
-        /*
-        renderError(){
-            if (this.state.error) {
-                return (
-                    <div>Error</div>
-                )
-            }
-        }
-        */      
+        }    
 
         return (
-
-            //{this.satate.error ? <div className="error">error</div> : null;}
-
-            //{ renderError();}
-
             <React.Fragment>
                 <form>
                     <label>id</label>

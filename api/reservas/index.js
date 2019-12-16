@@ -1,8 +1,6 @@
 const router = require('express').Router();
 const Reserva = require('../../models/reservas');
 
-//Handlers para los endpoints de la API de reservas
-
 router.get('/', (req, res, next) => {
 
     Reserva.obtenerTodasReservas()

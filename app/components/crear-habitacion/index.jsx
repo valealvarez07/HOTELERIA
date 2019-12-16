@@ -44,7 +44,6 @@ class CrearHabitacion extends React.Component {
         if (this.state.redireccionar) {
             return (
                 window.location.href = "/hoteleria"
-                //<Redirect to="/hoteleria"/> 
             )
         }
         
@@ -66,7 +65,6 @@ class CrearHabitacion extends React.Component {
                     </select>
                     <br/>
                     <label>imagenes</label>
-                    {/* <input onChange={this.guardarImagenes} type="text"></input> */}
                     <input onChange={this.guardarImagenes} type="file"></input>
                     <br/>
                     <label>descripcion</label>
@@ -102,8 +100,7 @@ class CrearHabitacion extends React.Component {
         );
     }
 
-    crearHabitacion (e){
-        //e.preventDefault();
+    crearHabitacion (){
 
         var data = new FormData();
         data.append('numeroHabitacion', this.numeroHabitacion);
@@ -122,23 +119,6 @@ class CrearHabitacion extends React.Component {
             method: 'POST',
             body: data,
         })
-
-        // fetch ('/api/habitaciones', {
-        //     headers: {"Content-Type": "application/json; charset=utf-8"},
-        //     method: 'POST',
-        //     body: JSON.stringify({
-        //         numeroHabitacion: this.numeroHabitacion,
-        //         valoracion: this.refs.valoracionRef.value,
-        //         imagenes: this.imagenes,
-        //         descripcion: this.descripcion,
-        //         tipoHabitacion: this.refs.tipoHabitacionRef.value,
-        //         precio: this.precio,
-        //         comodidades: this.comodidades,
-        //         servicios: this.servicios,
-        //         tamañoMetros2: this.tamañoMetros2,
-        //         disponibilidad: this.disponibilidad,
-        //     })
-        // })
 
         .then ((data) => {
             console.log(data);

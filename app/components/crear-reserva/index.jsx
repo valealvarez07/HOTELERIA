@@ -51,8 +51,6 @@ class CrearReserva extends React.Component {
             <React.Fragment>
                 <form method="POST" action="/api/reservas" encType="application/x-www-form-urlencoded">
 
-                    {/* <p>numeroHabitacion: {this.state.habitacion.numeroHabitacion}</p> */}
-
                     <label>numeroHabitacion</label>
                     <input onChange={this.guardarNumeroHabitacion} name="" type="number"></input>
                     <br />
@@ -78,8 +76,7 @@ class CrearReserva extends React.Component {
         );
     }
 
-    crearReserva(e) {
-        //e.preventDefault();
+    crearReserva() {
         fetch('/api/reservas', {
             headers: { "Content-Type": "application/json; charset=utf-8" },
             method: 'POST',
@@ -95,8 +92,6 @@ class CrearReserva extends React.Component {
         })
 
             .then((data) => {
-                //console.log(data);
-
                 this.setState({
                     redireccionar: true,
                 });
@@ -115,7 +110,6 @@ class CrearReserva extends React.Component {
         this.numeroReserva = event.target.value;
     }
     guardarIdUsuario(event) {
-        //console.log('event', this.refs.valoracionRef.value);
         this.idUsuario = event.target.value;
     }
     guardarNumeroHabitacion(event) {

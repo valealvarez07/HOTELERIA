@@ -4,8 +4,6 @@ const upload = multer({ dest: 'dist/imagenes/'});
 
 const Habitacion = require('../../models/habitaciones');
 
-//Handlers para los endpoints de la API de habitaciones
-
 router.get('/', (req, res, next) => {
 
     Habitacion.obtenerTodasHabitaciones()
@@ -34,26 +32,11 @@ router.get('/:numeroHabitacion', (req, res, next) => {
     });
 });
 
-// router.get('/:tipoHabitacion', (req, res, next) => {
-
-//     Habitacion.obtenerHabitacionPorTipo(req.params.tipoHabitacion)
-//     .then(habitacion => {
-//         res.json({
-//             habitacion,
-//         });
-//     })
-    
-//     .catch(err => {
-//         next(err);
-//     });
-// });
-
 router.post('/', upload.single('imagenes'), (req, res, next) => {
 
     
     const numeroHabitacion = req.body.numeroHabitacion;
     const valoracion = req.body.valoracion;
-    //const imagenes = req.body.imagenes;
     const imagenes = req.file.filename;
     const descripcion = req.body.descripcion;
     const tipoHabitacion = req.body.tipoHabitacion;

@@ -18,17 +18,19 @@ class Hoteleria extends React.Component {
 
         {sesionUsuario ?
           <div>
+            <a href='/api/usuarios/cerrarSesion'>cerrar sesion</a>
+          </div>
+          : null}
+
+        {administrador === 1 ?
+          <div>
             <Link to={`/hoteleria/usuarios`}>ver usuarios</Link>
             <br />
             <Link to={`/hoteleria/reservas`}>ver reservas</Link>
             <br />
             <Link to={'/hoteleria/crear-habitacion'}>crear una habitacion</Link>
-            <br />
-            <a href='/api/usuarios/cerrarSesion'>cerrar sesion</a>
           </div>
           : null}
-
-          
 
         <br />
 
@@ -39,10 +41,6 @@ class Hoteleria extends React.Component {
             ))
           }
         </ul>
-
-
-
-
 
         {/* <Link to={'/hoteleria/crear-usuario'}>ir a crear un usuario</Link> */}
       </div>

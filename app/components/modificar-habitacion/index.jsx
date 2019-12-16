@@ -114,7 +114,7 @@ class ModificarHabitacion extends React.Component {
                             <input onChange={this.guardarTamañoMetros2} placeholder={this.state.habitacion.tamañoMetros2} type="text"></input>
                             <br/>
                             <label>disponibilidad </label>
-                            <input onChange={this.guardarDisponibilidad} placeholder={this.state.habitacion.disponibilidad} type="text"></input>
+                            <input onChange={this.guardarDisponibilidad} placeholder={this.state.habitacion.disponibilidad} type="date"></input>
                             <br/><br/>
 
                             <button type="button" onClick={this.modificarHabitacion}>modificar habitacion</button>
